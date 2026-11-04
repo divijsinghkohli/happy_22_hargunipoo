@@ -1,0 +1,14 @@
+import cv2, sys, os, json
+sys.path.insert(0, os.path.dirname(__file__))
+from comicify import comicify
+SRC = sys.argv[1]; dims = {}
+crops = {'nice2': (.05, .92, .1, .62), 'nice3': (.3, .85, .1, .9), 'nice4': (.15, 1, 0, 1)}   # x0, x1, y0, y1
+for slug, (x0, x1, y0, y1) in crops.items():
+    im = cv2.imread(f'{SRC}/{slug}.jpg'); h, w = im.shape[:2]
+    im = im[int(h * y0):int(h * y1), int(w * x0):int(w * x1)]
+    r = min(1, 1800 / max(im.shape[:2])); im = cv2.resize(im, None, fx=r, fy=r, interpolation=cv2.INTER_AREA); h, w = im.shape[:2]
+    dims[slug] = [w, h]
+    rr = min(1, 1300 / max(h, w))
+    cv2.imwrite(f'assets/real/{slug}.webp', cv2.resize(im, None, fx=rr, fy=rr, interpolation=cv2.INTER_AREA), [cv2.IMWRITE_WEBP_QUALITY, 80])
+    cv2.imwrite(f'assets/img/{slug}.webp', comicify(im), [cv2.IMWRITE_WEBP_QUALITY, 84])
+print(json.dumps(dims))

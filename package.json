@@ -1,0 +1,23 @@
+{
+  "name": "mygoonbday",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@fontsource-variable/shantell-sans": "^5.3.0",
+    "@fontsource/anton": "^5.3.0",
+    "@fontsource/bangers": "^5.3.0",
+    "@fontsource/barlow-condensed": "^5.3.0",
+    "@fontsource/covered-by-your-grace": "^5.3.0",
+    "@fontsource/knewave": "^5.3.0",
+    "@fontsource/special-elite": "^5.3.0",
+    "gsap": "^3.15.1"
+  }
+}
